@@ -2117,6 +2117,9 @@
   </group>
   <group>
     <name>bsp</name>
+    <file>
+      <name>$PROJ_DIR$\..\Src\bsp\bsp_led.c</name>
+    </file>
   </group>
   <group>
     <name>Documents</name>

@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "D:\Projects\STM32_Project_Template\STM32F407IGTx\EWARM\EWARM\settings\TECHMM_PNP.Debug.general.xcl" --backend -f "D:\Projects\STM32_Project_Template\STM32F407IGTx\EWARM\EWARM\settings\TECHMM_PNP.Debug.driver.xcl" 
+"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "D:\Projects\STM32\STM32F407IGx_LED\EWARM\settings\TECHMM_PNP.Debug.general.xcl" --backend -f "D:\Projects\STM32\STM32F407IGx_LED\EWARM\settings\TECHMM_PNP.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "D:\Projects\STM32_Project_Template\STM32F407IGTx\EWARM\EWARM\settings\TECHMM_PNP.Debug.general.xcl" "--debug_file=%~1" --backend -f "D:\Projects\STM32_Project_Template\STM32F407IGTx\EWARM\EWARM\settings\TECHMM_PNP.Debug.driver.xcl" 
+"D:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\common\bin\cspybat" -f "D:\Projects\STM32\STM32F407IGx_LED\EWARM\settings\TECHMM_PNP.Debug.general.xcl" "--debug_file=%~1" --backend -f "D:\Projects\STM32\STM32F407IGx_LED\EWARM\settings\TECHMM_PNP.Debug.driver.xcl" 
 
 @echo off 
 :end

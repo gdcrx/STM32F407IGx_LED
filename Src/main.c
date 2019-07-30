@@ -37,6 +37,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "bsp_led.h"
 
 /** @addtogroup STM32F4xx_HAL_Examples
   * @{
@@ -78,14 +79,17 @@ int main(void)
 
   /* 配置系统时钟 Configure the system clock to 168 MHz */
   SystemClock_Config();
-  
-  /* Add your application code here
-     */
-
+   
+  /* 板载LED初始化 */
+  LED_GPIO_Init();
 
   /* Infinite loop */
   while (1)
   {
+    LED1_ON;
+    HAL_Delay(100);
+    LED1_OFF;
+    HAL_Delay(100);
   }
 }
 
