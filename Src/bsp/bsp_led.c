@@ -1,126 +1,126 @@
  
 
-/* °üº¬Í·ÎÄ¼þ ----------------------------------------------------------------*/
+/* åŒ…å«å¤´æ–‡ä»¶ ----------------------------------------------------------------*/
 #include "bsp_led.h"
 
-/* Ë½ÓÐÀàÐÍ¶¨Òå --------------------------------------------------------------*/
-/* Ë½ÓÐºê¶¨Òå ----------------------------------------------------------------*/
-/* Ë½ÓÐ±äÁ¿ ------------------------------------------------------------------*/
-/* À©Õ¹±äÁ¿ ------------------------------------------------------------------*/
-/* Ë½ÓÐº¯ÊýÔ­ÐÎ --------------------------------------------------------------*/
-/* º¯ÊýÌå --------------------------------------------------------------------*/
+/* ç§æœ‰ç±»åž‹å®šä¹‰ --------------------------------------------------------------*/
+/* ç§æœ‰å®å®šä¹‰ ----------------------------------------------------------------*/
+/* ç§æœ‰å˜é‡ ------------------------------------------------------------------*/
+/* æ‰©å±•å˜é‡ ------------------------------------------------------------------*/
+/* ç§æœ‰å‡½æ•°åŽŸå½¢ --------------------------------------------------------------*/
+/* å‡½æ•°ä½“ --------------------------------------------------------------------*/
 
 /**
-  * º¯Êý¹¦ÄÜ: °åÔØLEDµÆIOÒý½Å³õÊ¼»¯.
-  * ÊäÈë²ÎÊý: ÎÞ
-  * ·µ »Ø Öµ: ÎÞ
-  * Ëµ    Ã÷£ºÊ¹ÓÃºê¶¨Òå·½·¨´úÌæ¾ßÌåÒý½ÅºÅ£¬·½±ã³ÌÐòÒÆÖ²£¬Ö»Òª¼òµ¥ÐÞ¸Äbsp_led.h
-  *           ÎÄ¼þÏà¹Øºê¶¨Òå¾Í¿ÉÒÔ·½±ãÐÞ¸ÄÒý½Å¡£
+  * å‡½æ•°åŠŸèƒ½: æ¿è½½LEDç¯IOå¼•è„šåˆå§‹åŒ–.
+  * è¾“å…¥å‚æ•°: æ— 
+  * è¿” å›ž å€¼: æ— 
+  * è¯´    æ˜Žï¼šä½¿ç”¨å®å®šä¹‰æ–¹æ³•ä»£æ›¿å…·ä½“å¼•è„šå·ï¼Œæ–¹ä¾¿ç¨‹åºç§»æ¤ï¼Œåªè¦ç®€å•ä¿®æ”¹bsp_led.h
+  *           æ–‡ä»¶ç›¸å…³å®å®šä¹‰å°±å¯ä»¥æ–¹ä¾¿ä¿®æ”¹å¼•è„šã€‚
 
-  * STM32F407IGT6ÓÐ9¸öGPIO(Í¨ÓÃÊäÈëÊä³ö)ÍâÉè£¬GPIOA¡¢GPIB¡¢GPIOC¡¢GPIOD¡¢GPIOE¡¢GPIOF¡¢GPIOG¡¢GPIOH¡¢GPIOI¡£
-    Ã¿¸öÍâÉèÓÐ16¸öÒý½Å£¬ÈçPA0¡¢PA1¡¢PA2...PA15£¬GPIOIÓÐ12¸öÒý½Å£¬Ò»¹²Òý½ÅÊýÊÇ140¸ö¡£
-    LEDµÆ1½ÓµÄÊÇGPIOHµÄµÚ9ºÅÒý½Å
-    LEDµÆ2½ÓµÄÊÇGPIOEµÄµÚ5ºÅÒý½Å
-    LEDµÆ3½ÓµÄÊÇGPIOEµÄµÚ6ºÅÒý½Å
+  * STM32F407IGT6æœ‰9ä¸ªGPIO(é€šç”¨è¾“å…¥è¾“å‡º)å¤–è®¾ï¼ŒGPIOAã€GPIBã€GPIOCã€GPIODã€GPIOEã€GPIOFã€GPIOGã€GPIOHã€GPIOIã€‚
+    æ¯ä¸ªå¤–è®¾æœ‰16ä¸ªå¼•è„šï¼Œå¦‚PA0ã€PA1ã€PA2...PA15ï¼ŒGPIOIæœ‰12ä¸ªå¼•è„šï¼Œä¸€å…±å¼•è„šæ•°æ˜¯140ä¸ªã€‚
+    LEDç¯1æŽ¥çš„æ˜¯GPIOHçš„ç¬¬9å·å¼•è„š
+    LEDç¯2æŽ¥çš„æ˜¯GPIOEçš„ç¬¬5å·å¼•è„š
+    LEDç¯3æŽ¥çš„æ˜¯GPIOEçš„ç¬¬6å·å¼•è„š
 */
 void LED_GPIO_Init(void)
 {
-   /* ¶¨ÒåGPIO½á¹¹Ìå±äÁ¿ */
+   /* å®šä¹‰GPIOç»“æž„ä½“å˜é‡ */
   GPIO_InitTypeDef GPIO_InitStruct;
 	
-	/* Ê¹ÄÜ(¿ªÆô)LEDÒý½Å¶ÔÓ¦IO¶Ë¿ÚÊ±ÖÓ */  
+	/* ä½¿èƒ½(å¼€å¯)LEDå¼•è„šå¯¹åº”IOç«¯å£æ—¶é’Ÿ */  
   LED1_RCC_CLK_ENABLE();
   LED2_RCC_CLK_ENABLE();
   LED3_RCC_CLK_ENABLE();
   
   // PH9
-  /* Éè¶¨LED1¶ÔÓ¦Òý½ÅIO±àºÅ */
+  /* è®¾å®šLED1å¯¹åº”å¼•è„šIOç¼–å· */
   GPIO_InitStruct.Pin = LED1_GPIO_PIN;
-  /* Éè¶¨LED1¶ÔÓ¦Òý½ÅIOÎªÊä³öÄ£Ê½ */
+  /* è®¾å®šLED1å¯¹åº”å¼•è„šIOä¸ºè¾“å‡ºæ¨¡å¼ */
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  /* Éè¶¨LED1¶ÔÓ¦Òý½ÅIO²Ù×÷ËÙ¶È */
+  /* è®¾å®šLED1å¯¹åº”å¼•è„šIOæ“ä½œé€Ÿåº¦ */
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  /* ³õÊ¼»¯LED1¶ÔÓ¦Òý½ÅGPIOH */
+  /* åˆå§‹åŒ–LED1å¯¹åº”å¼•è„šGPIOH */
   HAL_GPIO_Init(LED1_GPIO, &GPIO_InitStruct);
   
   // PE5
-  /* Éè¶¨LED2¶ÔÓ¦Òý½ÅIO±àºÅ */
+  /* è®¾å®šLED2å¯¹åº”å¼•è„šIOç¼–å· */
   GPIO_InitStruct.Pin = LED2_GPIO_PIN;
-  /* Éè¶¨LED2¶ÔÓ¦Òý½ÅIOÎªÊä³öÄ£Ê½ */
+  /* è®¾å®šLED2å¯¹åº”å¼•è„šIOä¸ºè¾“å‡ºæ¨¡å¼ */
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  /* Éè¶¨LED2¶ÔÓ¦Òý½ÅIO²Ù×÷ËÙ¶È */
+  /* è®¾å®šLED2å¯¹åº”å¼•è„šIOæ“ä½œé€Ÿåº¦ */
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  /* ³õÊ¼»¯LED2¶ÔÓ¦Òý½ÅIO */
+  /* åˆå§‹åŒ–LED2å¯¹åº”å¼•è„šIO */
   HAL_GPIO_Init(LED2_GPIO, &GPIO_InitStruct);
   
   // PE6 
-  /* Éè¶¨LED3¶ÔÓ¦Òý½ÅIO±àºÅ */
+  /* è®¾å®šLED3å¯¹åº”å¼•è„šIOç¼–å· */
   GPIO_InitStruct.Pin = LED3_GPIO_PIN; 
-  /* Éè¶¨LED3¶ÔÓ¦Òý½ÅIOÎªÊä³öÄ£Ê½ */
+  /* è®¾å®šLED3å¯¹åº”å¼•è„šIOä¸ºè¾“å‡ºæ¨¡å¼ */
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  /* Éè¶¨LED3¶ÔÓ¦Òý½ÅIO²Ù×÷ËÙ¶È */
+  /* è®¾å®šLED3å¯¹åº”å¼•è„šIOæ“ä½œé€Ÿåº¦ */
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  /* ³õÊ¼»¯LED3¶ÔÓ¦Òý½ÅIO */
+  /* åˆå§‹åŒ–LED3å¯¹åº”å¼•è„šIO */
   HAL_GPIO_Init(LED3_GPIO, &GPIO_InitStruct);
   
-  // LED È«ÃðµÆ
-    /* ÅäÖÃLED1Òý½ÅÊä³öµçÑ¹ */
+  // LED å…¨ç­ç¯
+    /* é…ç½®LED1å¼•è„šè¾“å‡ºç”µåŽ‹ */
   HAL_GPIO_WritePin(LED1_GPIO, LED1_GPIO_PIN, GPIO_PIN_RESET);
-  /* ÅäÖÃLED2Òý½ÅÊä³öµçÑ¹ */
+  /* é…ç½®LED2å¼•è„šè¾“å‡ºç”µåŽ‹ */
   HAL_GPIO_WritePin(LED2_GPIO, LED2_GPIO_PIN, GPIO_PIN_RESET);
-  /* ÅäÖÃLED3Òý½ÅÊä³öµçÑ¹ */
+  /* é…ç½®LED3å¼•è„šè¾“å‡ºç”µåŽ‹ */
   HAL_GPIO_WritePin(LED2_GPIO, LED3_GPIO_PIN, GPIO_PIN_RESET);  
   
 }
 
 /**
-  * º¯Êý¹¦ÄÜ: ÉèÖÃ°åÔØLEDµÆµÄ×´Ì¬
-  * ÊäÈë²ÎÊý: LEDx:ÆäÖÐx¿ÉÉõÖÁÎª(1,2,3)ÓÃÀ´Ñ¡Ôñ¶ÔÓ¦µÄLEDµÆ
-  *           state:ÉèÖÃLEDµÆµÄÊä³ö×´Ì¬¡£
-  *           ¿ÉÑ¡Öµ:LED_OFF:LEDµÆÃð
-  *                   LED_ON:LEDµÆÁÁ 
-  *                   LED_TOGGLE:·´×ªLED
-  * ·µ »Ø Öµ: ÎÞ
-  * Ëµ    Ã÷: ¸Ãº¯ÊýÊ¹ÓÃÀàËÆ±ê×¼¿âº¯ÊýµÄ±à³Ì·½·¨£¬·½±ãÀí½â±ê×¼¿âº¯Êý±à³ÌË¼Ïë¡£
+  * å‡½æ•°åŠŸèƒ½: è®¾ç½®æ¿è½½LEDç¯çš„çŠ¶æ€
+  * è¾“å…¥å‚æ•°: LEDx:å…¶ä¸­xå¯ç”šè‡³ä¸º(1,2,3)ç”¨æ¥é€‰æ‹©å¯¹åº”çš„LEDç¯
+  *           state:è®¾ç½®LEDç¯çš„è¾“å‡ºçŠ¶æ€ã€‚
+  *           å¯é€‰å€¼:LED_OFF:LEDç¯ç­
+  *                   LED_ON:LEDç¯äº® 
+  *                   LED_TOGGLE:åè½¬LED
+  * è¿” å›ž å€¼: æ— 
+  * è¯´    æ˜Ž: è¯¥å‡½æ•°ä½¿ç”¨ç±»ä¼¼æ ‡å‡†åº“å‡½æ•°çš„ç¼–ç¨‹æ–¹æ³•ï¼Œæ–¹ä¾¿ç†è§£æ ‡å‡†åº“å‡½æ•°ç¼–ç¨‹æ€æƒ³ã€‚
   */
 void LEDx_StateSet(uint8_t LEDx,LEDState_TypeDef state)
 {
-  /* ¼ì²éÊäÈë²ÎÊýÊÇ·ñºÏ·¨ */
+  /* æ£€æŸ¥è¾“å…¥å‚æ•°æ˜¯å¦åˆæ³• */
   assert_param(IS_LED_TYPEDEF(LEDx));
   assert_param(IS_LED_STATE(state));
   
-  /* ÅÐ¶ÏÉèÖÃµÄLEDµÆ×´Ì¬£¬Èç¹ûÉèÖÃÎªLEDµÆÃð */
+  /* åˆ¤æ–­è®¾ç½®çš„LEDç¯çŠ¶æ€ï¼Œå¦‚æžœè®¾ç½®ä¸ºLEDç¯ç­ */
   if(state==LED_OFF)
   {
     if(LEDx & LED1)            
-      LED1_OFF;/* LED1Ãð */
+      LED1_OFF;/* LED1ç­ */
     
     if(LEDx & LED2)
-      LED2_OFF;/* LED2Ãð */
+      LED2_OFF;/* LED2ç­ */
     
     if(LEDx & LED3)
-      LED3_OFF;/* LED3Ãð */    
+      LED3_OFF;/* LED3ç­ */    
   }
-  else if(state==LED_ON) /* ÉèÖÃLEDµÆÎªÁÁ */
+  else if(state==LED_ON) /* è®¾ç½®LEDç¯ä¸ºäº® */
   {
     if(LEDx & LED1)
-      LED1_ON;/* LED1ÁÁ */
+      LED1_ON;/* LED1äº® */
     
     if(LEDx & LED2)
-      LED2_ON;/* LED2ÁÁ */
+      LED2_ON;/* LED2äº® */
     
     if(LEDx & LED3)
-      LED3_ON;/* LED3ÁÁ */ 
+      LED3_ON;/* LED3äº® */ 
   }
   else
   {
     if(LEDx & LED1)
-      LED1_TOGGLE;/* ÉèÖÃÒý½ÅÊä³ö·´×ª */
+      LED1_TOGGLE;/* è®¾ç½®å¼•è„šè¾“å‡ºåè½¬ */
     
     if(LEDx & LED2)
-      LED2_TOGGLE;/* ÉèÖÃÒý½ÅÊä³ö·´×ª */
+      LED2_TOGGLE;/* è®¾ç½®å¼•è„šè¾“å‡ºåè½¬ */
     
     if(LEDx & LED3)
-      LED3_TOGGLE;/* ÉèÖÃÒý½ÅÊä³ö·´×ª */ 
+      LED3_TOGGLE;/* è®¾ç½®å¼•è„šè¾“å‡ºåè½¬ */ 
   }
 }
